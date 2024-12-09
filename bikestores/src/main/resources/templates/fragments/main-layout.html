@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" th:fragment="main-layout(template, signedIn)" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" th:href="@{/resources/favicon.png}" type="image/x-icon">
+  <title>Bike Stores</title>
+
+  <th:block th:insert="~{fragments/import/styles}"/>
+</head>
+<body class="">
+<div class="container position-sticky z-index-sticky top-0">
+  <div class="row">
+    <div class="col-12">
+      <!-- Navbar -->
+      <nav th:replace="~{fragments/navigation/navbar :: main-navbar(${signedIn})}"></nav>
+      <!-- End Navbar -->
+    </div>
+  </div>
+</div>
+<main class="main-content  mt-0">
+  <th:block th:insert="${template}"/>
+</main>
+<!-- -------- START FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
+<footer class="footer py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mb-4 mx-auto text-center">
+        <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+          Company
+        </a>
+        <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+          About Us
+        </a>
+        <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+          Team
+        </a>
+        <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+          Products
+        </a>
+        <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+          Blog
+        </a>
+        <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+          Pricing
+        </a>
+      </div>
+      <div class="col-lg-8 mx-auto text-center mb-4 mt-2">
+        <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+          <span class="text-lg fab fa-dribbble"></span>
+        </a>
+        <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+          <span class="text-lg fab fa-twitter"></span>
+        </a>
+        <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+          <span class="text-lg fab fa-instagram"></span>
+        </a>
+        <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+          <span class="text-lg fab fa-pinterest"></span>
+        </a>
+        <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+          <span class="text-lg fab fa-github"></span>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8 mx-auto text-center mt-1">
+        <p class="mb-0 text-secondary">
+          Copyright © <script>
+              document.write(new Date().getFullYear())
+            </script> Soft by Creative Tim.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<th:block th:insert="~{fragments/import/scripts}"/>
+</body>
+</html>

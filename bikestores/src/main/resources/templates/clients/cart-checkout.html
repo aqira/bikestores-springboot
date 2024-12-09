@@ -1,0 +1,37 @@
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      th:replace="~{fragments/main-layout :: main-layout(~{::body}, ${signedIn})}">
+<body>
+<div class="container pt-7">
+    <div class="col-12 mt-4">
+        <div class="card mb-4">
+            <div class="card-header pb-0 p-3">
+                <h6 class="mb-1">My Cart</h6>
+            </div>
+            <div class="card-body p-3">
+                <div class="card">
+                    <h5 class="card-header" th:text="${cart.storeName}">Store Name</h5>
+                    <div class="card-body">
+                        <form method="post" class="container" th:object="${order}">
+                            <input type="number" th:name="storeId" th:value="${cart.storeId}" hidden>
+
+                            <div class="row" th:each="cartItem, cartItemIndex : ${cart.cartItems}" th:field="${order.productIds}">
+                                <input type="number"
+                                       th:name="|productIds[${cartItemIndex.index}]|"
+                                       th:value="${cartItem.productId}"
+                                       hidden>
+                                <div class="row card-text" th:text="${cartItem.productName}">Nama Produk</div>
+                                <div class="row card-text" th:text="'$ ' + ${cartItem.listPrice}">Harga</div>
+                                <hr>
+                            </div>
+
+                            <h6 th:text="'Total Price: $ '+ ${cart.totalPrice}">Total Harga</h6>
+                            <button class="btn btn-primary">Check Out</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

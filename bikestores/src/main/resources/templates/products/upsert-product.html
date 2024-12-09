@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::body}, 'Product',
+      ${product.id} == null ? 'Product / New' : 'Product / Edit / ' + ${product.id})}">
+<body>
+<div class="container">
+    <form method="post" th:object="${product}">
+        <input type="number" class="form-control" id="id" th:field="*{id}" hidden>
+        <div class="form-group">
+            <div th:errors="*{name}" class="text-danger"></div>
+            <label for="name">Product Name</label>
+            <input type="text" class="form-control" id="name" th:field="*{name}">
+        </div>
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <select id="category" th:field="*{categoryId}" class="form-control" required>
+                <option value="">Select Category</option>
+                <option th:each="categoryDropdown : ${categoryDropdowns}"
+                        th:value="${categoryDropdown.value}"
+                        th:text="${categoryDropdown.text}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="brand">Brand:</label>
+            <select id="brand" th:field="*{brandId}" class="form-control" required>
+                <option value="">Select Brand</option>
+                <option th:each="brandDropdown : ${brandDropdowns}"
+                        th:value="${brandDropdown.value}"
+                        th:text="${brandDropdown.text}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="modelYear">Model Year:</label>
+            <input th:field="*{modelYear}" id="modelYear" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="listPrice">Price:</label>
+            <input th:field="*{listPrice}" id="listPrice" type="text" class="form-control">
+        </div>
+
+        <button class="btn btn-primary" th:text="${product.id} == null ? 'Add' : 'Edit'">Product!</button>
+    </form>
+</div>
+</body>
+</html>
